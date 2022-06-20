@@ -1,6 +1,6 @@
 package com.learning.hwork7_1
 
-class Operation {
+object MathematicalOperation {
     private var memory: Double = 0.0
 
     fun add(a: Double = memory, b: Double): Double {
