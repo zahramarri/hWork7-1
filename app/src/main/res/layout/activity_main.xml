@@ -23,191 +23,213 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_margin="1dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"/>
+            android:layout_weight="3" />
 
         <Button
             android:id="@+id/buttonDelete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/buttonDeleteText"            android:textStyle="bold"
-            android:textSize="15sp"/>
+            android:text="@string/buttonDeleteText"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="1dp"
         android:layout_weight="2">
 
         <Button
             android:id="@+id/buttonSeven"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonSevenText"
-            android:textStyle="bold"
+            android:layout_margin="2dp"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonEight"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonEightText"
-            android:textStyle="bold"
+            android:layout_margin="2dp"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonNine"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonNineText"
-            android:textStyle="bold"
+            android:layout_margin="2dp"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonDivisionSign"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="1dp"
         android:layout_weight="2">
 
         <Button
             android:id="@+id/buttonFour"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonFourText"
-            android:textStyle="bold"
+            android:layout_margin="2dp"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonFive"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonFiveText"
-            android:textStyle="bold"
+            android:layout_margin="2dp"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonSix"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonSixText"
-            android:textStyle="bold"
+            android:layout_margin="2dp"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonMultiplicationSign"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="1dp"
         android:layout_weight="2">
 
         <Button
             android:id="@+id/buttonOne"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
             android:text="@string/buttonOneText"
-            android:textStyle="bold"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonTwo"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonTwoText"
-            android:textStyle="bold"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:layout_margin="2dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonThree"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonThreeText"
-            android:textStyle="bold"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:layout_margin="2dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonSubmissionSign"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonSubmissionSignText"
-            android:textStyle="bold"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:layout_margin="2dp"
+            android:textStyle="bold" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="1dp"
         android:layout_weight="2">
 
         <Button
             android:id="@+id/buttonDotSign"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonDotSignText"
-            android:textStyle="bold"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:layout_margin="2dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonZero"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonZeroText"
-            android:textStyle="bold"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:layout_margin="2dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonEqualSign"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonEqualSignText"
-            android:textStyle="bold"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:layout_margin="2dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonPluralSign"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/buttonAdditionSignText"
-            android:textStyle="bold"
             android:textSize="50sp"
-            android:layout_weight="1"/>
+            android:layout_margin="2dp"
+            android:textStyle="bold" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
