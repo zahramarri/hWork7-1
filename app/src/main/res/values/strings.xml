@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">hWork7-1</string>
+    <string name="app_name">hWork7–1</string>
+    <string name="buttonDeleteText">delete</string>
 </resources>
