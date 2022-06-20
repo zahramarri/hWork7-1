@@ -15,12 +15,12 @@ class MainActivity : AppCompatActivity() {
         setMultiplicationSign()
     }
 
-    fun setDivisionSign() {
+    private fun setDivisionSign() {
         val divisionSign = "\u00F7"
         binding.buttonDivisionSign.text = divisionSign
     }
 
-    fun setMultiplicationSign() {
+    private fun setMultiplicationSign() {
         val multiplicationSign = "\u00D7"
         binding.buttonMultiplicationSign.text = multiplicationSign
     }
