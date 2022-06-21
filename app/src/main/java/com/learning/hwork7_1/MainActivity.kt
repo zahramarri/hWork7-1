@@ -67,6 +67,24 @@ class MainActivity : AppCompatActivity() {
             handleDotSignInput(binding.buttonDotSign.text.toString())
             binding.resultOfOperations.text = input
         }
+
+        binding.buttonDivisionSign.setOnClickListener{
+            handleOperatorInput(binding.buttonDivisionSign.text.toString())
+            binding.resultOfOperations.text = input
+        }
+        binding.buttonMultiplicationSign.setOnClickListener{
+            handleOperatorInput(binding.buttonMultiplicationSign.text.toString())
+            binding.resultOfOperations.text = input
+        }
+        binding.buttonSubmissionSign.setOnClickListener{
+            handleOperatorInput(binding.buttonSubmissionSign.text.toString())
+            binding.resultOfOperations.text = input
+        }
+        binding.buttonAdditionSign.setOnClickListener{
+            handleOperatorInput(binding.buttonAdditionSign.text.toString())
+            binding.resultOfOperations.text = input
+        }
+
     }
 
     private fun setDivisionSign() {
@@ -96,10 +114,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleOperatorInput(newInput: String) {
-        if (((newInput == "-") && (input.last().toString() == "\u00F7" || input.last()
-                .toString() == "\u00D7")) ||
-            input.last().toString() !in operators
-        ) {
+        if (((newInput == "-") && (input.last().toString() == "\u00F7" || input.last().toString() == "\u00D7")) || input.last().toString() !in operators) {
             input += newInput
         }
     }
