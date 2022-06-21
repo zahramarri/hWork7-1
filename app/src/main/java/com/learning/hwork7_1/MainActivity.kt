@@ -2,6 +2,7 @@ package com.learning.hwork7_1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.learning.hwork7_1.MathematicalOperation.doOperationsInOrder
 import com.learning.hwork7_1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -68,22 +69,33 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonDivisionSign.setOnClickListener{
             handleOperatorInput(binding.buttonDivisionSign.text.toString())
-            storeInput(binding.buttonDivisionSign.text.toString())
+            storeOperator(binding.buttonDivisionSign.text.toString())
+            storeNumber()
             binding.resultOfOperations.text = input
         }
         binding.buttonMultiplicationSign.setOnClickListener{
             handleOperatorInput(binding.buttonMultiplicationSign.text.toString())
-            storeInput(binding.buttonMultiplicationSign.text.toString())
+            storeOperator(binding.buttonMultiplicationSign.text.toString())
+            storeNumber()
             binding.resultOfOperations.text = input
         }
         binding.buttonSubmissionSign.setOnClickListener{
             handleOperatorInput(binding.buttonSubmissionSign.text.toString())
-            storeInput(binding.buttonSubmissionSign.text.toString())
+            storeOperator(binding.buttonSubmissionSign.text.toString())
+            storeNumber()
             binding.resultOfOperations.text = input
         }
         binding.buttonAdditionSign.setOnClickListener{
             handleOperatorInput(binding.buttonAdditionSign.text.toString())
-            storeInput(binding.buttonAdditionSign.text.toString())
+            storeNumber()
+            storeOperator(binding.buttonAdditionSign.text.toString())
+            binding.resultOfOperations.text = input
+        }
+
+        binding.buttonEqualSign.setOnClickListener{
+            storeNumber()
+            input = doOperationsInOrder().toString()
+            number = input
             binding.resultOfOperations.text = input
         }
 
@@ -122,9 +134,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun storeInput(operator: String) {
-        MathematicalOperation.listOfOperators.add(operator)
+    private fun storeNumber() {
         MathematicalOperation.listOfNumbers.add(number.toDouble())
         number = ""
+    }
+    private fun storeOperator(operator: String) {
+        MathematicalOperation.listOfOperators.add(operator)
     }
 }

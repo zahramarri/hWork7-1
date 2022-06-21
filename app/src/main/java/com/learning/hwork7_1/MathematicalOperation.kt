@@ -22,29 +22,31 @@ object MathematicalOperation {
 
     }
 
-    private fun operate(index: Int, operation: (Double, Double)-> Double) {
-        val b = operation(listOfNumbers[index], listOfNumbers[index + 1])
-        listOfNumbers[index] = b
+    private fun operate(index: Int, operation: (Double, Double)-> Double): Double {
+        val resultOfOperation = operation(listOfNumbers[index], listOfNumbers[index + 1])
+        listOfNumbers[index] = resultOfOperation
         listOfNumbers.removeAt(index + 1)
         listOfOperators.removeAt(index)
+        return resultOfOperation
     }
 
-    fun doOperationsInOrder() {
+    fun doOperationsInOrder(): Double? {
         for (operator in listOfOperators) {
             val index = listOfOperators.indexOf(operator)
-            if (listOfOperators.contains("×") || listOfOperators.contains("÷")) {
-               if (operator == "×") {
-                   operate(index, ::multiply)
-               } else {
-                   operate(index, ::divide)
-               }
-           } else {
-               if (operator == "+") {
-                   operate(index, ::add)
-               } else {
-                   operate(index, ::submit)
-               }
-           }
+            return if (listOfOperators.contains("×") || listOfOperators.contains("÷")) {
+                if (operator == "×") {
+                    operate(index, ::multiply)
+                } else {
+                    operate(index, ::divide)
+                }
+            } else {
+                if (operator == "+") {
+                    operate(index, ::add)
+                } else {
+                    operate(index, ::submit)
+                }
+            }
         }
+        return null
     }
 }
