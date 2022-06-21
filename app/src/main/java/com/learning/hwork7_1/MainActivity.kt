@@ -67,38 +67,44 @@ class MainActivity : AppCompatActivity() {
             binding.resultOfOperations.text = input
         }
 
-        binding.buttonDivisionSign.setOnClickListener{
+        binding.buttonDivisionSign.setOnClickListener {
             handleOperatorInput(binding.buttonDivisionSign.text.toString())
             storeOperator(binding.buttonDivisionSign.text.toString())
             storeNumber()
             binding.resultOfOperations.text = input
         }
-        binding.buttonMultiplicationSign.setOnClickListener{
+        binding.buttonMultiplicationSign.setOnClickListener {
             handleOperatorInput(binding.buttonMultiplicationSign.text.toString())
             storeOperator(binding.buttonMultiplicationSign.text.toString())
             storeNumber()
             binding.resultOfOperations.text = input
         }
-        binding.buttonSubmissionSign.setOnClickListener{
+        binding.buttonSubmissionSign.setOnClickListener {
             handleOperatorInput(binding.buttonSubmissionSign.text.toString())
             storeOperator(binding.buttonSubmissionSign.text.toString())
             storeNumber()
             binding.resultOfOperations.text = input
         }
-        binding.buttonAdditionSign.setOnClickListener{
+        binding.buttonAdditionSign.setOnClickListener {
             handleOperatorInput(binding.buttonAdditionSign.text.toString())
             storeNumber()
             storeOperator(binding.buttonAdditionSign.text.toString())
             binding.resultOfOperations.text = input
         }
 
-        binding.buttonEqualSign.setOnClickListener{
-            storeNumber()
-            input = doOperationsInOrder().toString()
-            number = input
-            binding.resultOfOperations.text = input
+        binding.buttonEqualSign.setOnClickListener {
+            if (input.last().toString() !in operators &&
+                input.contains("+") ||
+                input.contains("-") ||
+                input.contains("\u00F7") ||
+                input.contains("\u00D7")
+            ) {
+                storeNumber()
+                input = doOperationsInOrder().toString()
+                binding.resultOfOperations.text = input
+                number = input
+            }
         }
-
     }
 
     private fun setDivisionSign() {
@@ -110,10 +116,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleDotSignInput(dotSign: String) {
-            if (!number.contains(".")) {
-                input += dotSign
-                number += dotSign
-            }
+        if (!number.contains(dotSign)) {
+            input += dotSign
+            number += dotSign
+        }
     }
 
     private fun handleDigits0to9Input(newDigit: String) {
@@ -129,7 +135,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleOperatorInput(operator: String) {
-        if (((operator == "-") && (input.last().toString() == "\u00F7" || input.last().toString() == "\u00D7")) || input.last().toString() !in operators) {
+        if (((operator == "-") && (input.last().toString() == "\u00F7" || input.last()
+                .toString() == "\u00D7")) || input.last().toString() !in operators
+        ) {
             input += operator
         }
     }
@@ -138,7 +146,9 @@ class MainActivity : AppCompatActivity() {
         MathematicalOperation.listOfNumbers.add(number.toDouble())
         number = ""
     }
+
     private fun storeOperator(operator: String) {
         MathematicalOperation.listOfOperators.add(operator)
     }
+
 }

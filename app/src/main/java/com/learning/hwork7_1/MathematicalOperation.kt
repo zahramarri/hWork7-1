@@ -47,6 +47,8 @@ object MathematicalOperation {
                 }
             }
         }
+        listOfNumbers.clear()
+        listOfNumbers.clear()
         return null
     }
 }
