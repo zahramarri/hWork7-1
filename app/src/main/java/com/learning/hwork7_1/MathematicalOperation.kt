@@ -22,7 +22,7 @@ object MathematicalOperation {
 
     }
 
-    private fun operate(operator: String, index: Int, operation: (Double, Double)-> Double) {
+    private fun operate(index: Int, operation: (Double, Double)-> Double) {
         val b = operation(listOfNumbers[index], listOfNumbers[index + 1])
         listOfNumbers[index] = b
         listOfNumbers.removeAt(index + 1)
@@ -34,15 +34,15 @@ object MathematicalOperation {
             val index = listOfOperators.indexOf(operator)
             if (listOfOperators.contains("×") || listOfOperators.contains("÷")) {
                if (operator == "×") {
-                   operate(operator, index, ::multiply)
+                   operate(index, ::multiply)
                } else {
-                   operate(operator, index, ::divide)
+                   operate(index, ::divide)
                }
            } else {
                if (operator == "+") {
-                   operate(operator, index, ::add)
+                   operate(index, ::add)
                } else {
-                   operate(operator, index, ::submit)
+                   operate(index, ::submit)
                }
            }
         }
