@@ -3,6 +3,8 @@ package com.learning.hwork7_1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.learning.hwork7_1.MathematicalOperation.doOperationsInOrder
+import com.learning.hwork7_1.MathematicalOperation.listOfNumbers
+import com.learning.hwork7_1.MathematicalOperation.listOfOperators
 import com.learning.hwork7_1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -100,10 +102,20 @@ class MainActivity : AppCompatActivity() {
                 input.contains("\u00D7")
             ) {
                 storeNumber()
-                input = doOperationsInOrder().toString()
+                val result = doOperationsInOrder()
+                input = if (result.toString().last() == '0') {
+                    result.toInt().toString()
+                } else {
+                    result.toString()
+                }
                 binding.resultOfOperations.text = input
                 number = input
             }
+        }
+
+        binding.buttonDelete.setOnClickListener{
+            handleDeleteAction()
+            binding.resultOfOperations.text = input
         }
     }
 
@@ -116,7 +128,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleDotSignInput(dotSign: String) {
-        if (!number.contains(dotSign)) {
+        if (number.isNotEmpty() && !number.contains(dotSign)) {
             input += dotSign
             number += dotSign
         }
@@ -143,12 +155,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun storeNumber() {
-        MathematicalOperation.listOfNumbers.add(number.toDouble())
+        listOfNumbers.add(number.toDouble())
         number = ""
     }
 
     private fun storeOperator(operator: String) {
-        MathematicalOperation.listOfOperators.add(operator)
+        listOfOperators.add(operator)
+    }
+
+    private fun handleDeleteAction () {
+        if (input.last().toString() in operators) {
+            input = input.dropLast(1)
+            listOfOperators.removeLast()
+            number = listOfNumbers.last().toString()
+            listOfNumbers.removeLast()
+        } else {
+            input = input.dropLast(1)
+            number = number.dropLast(1)
+        }
     }
 
 }

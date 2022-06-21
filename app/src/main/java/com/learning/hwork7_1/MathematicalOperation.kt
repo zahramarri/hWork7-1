@@ -30,10 +30,11 @@ object MathematicalOperation {
         return resultOfOperation
     }
 
-    fun doOperationsInOrder(): Double? {
+    fun doOperationsInOrder(): Double {
+        var result = 0.0
         for (operator in listOfOperators) {
             val index = listOfOperators.indexOf(operator)
-            return if (listOfOperators.contains("×") || listOfOperators.contains("÷")) {
+            result = if (listOfOperators.contains("×") || listOfOperators.contains("÷")) {
                 if (operator == "×") {
                     operate(index, ::multiply)
                 } else {
@@ -49,6 +50,6 @@ object MathematicalOperation {
         }
         listOfNumbers.clear()
         listOfNumbers.clear()
-        return null
+        return result
     }
 }
