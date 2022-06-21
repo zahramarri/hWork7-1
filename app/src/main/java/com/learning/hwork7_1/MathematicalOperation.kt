@@ -1,28 +1,25 @@
 package com.learning.hwork7_1
 
 object MathematicalOperation {
-    private val listOfNumbers: MutableList<Double> = mutableListOf()
-    private val listOfOperators: MutableList<String> = mutableListOf()
-    private var memory: Double = 0.0
+    val listOfNumbers: MutableList<Double> = mutableListOf()
+    val listOfOperators: MutableList<String> = mutableListOf()
 
-    private fun add(a: Double = memory, b: Double): Double {
-        memory = a + b
-        return memory
+    private fun add(a: Double, b: Double): Double {
+        return a + b
     }
 
-    private fun submit(a: Double = memory, b: Double): Double {
-        memory = a - b
-        return memory
+    private fun submit(a: Double, b: Double): Double {
+        return a - b
     }
 
-    private fun multiply(a: Double = memory, b: Double): Double {
-        memory = a * b
-        return memory
+    private fun multiply(a: Double, b: Double): Double {
+        return a * b
+
     }
 
-    private fun divide(a: Double = memory, b: Double): Double {
-        memory = a / b
-        return memory
+    private fun divide(a: Double, b: Double): Double {
+        return a / b
+
     }
 
     private fun operate(operator: String, index: Int, operation: (Double, Double)-> Double) {
