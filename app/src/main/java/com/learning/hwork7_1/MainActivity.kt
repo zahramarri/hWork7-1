@@ -62,6 +62,11 @@ class MainActivity : AppCompatActivity() {
             handleDigits0to9Input(binding.buttonNine.text.toString())
             binding.resultOfOperations.text = input
         }
+
+        binding.buttonDotSign.setOnClickListener {
+            handleDotSignInput(binding.buttonDotSign.text.toString())
+            binding.resultOfOperations.text = input
+        }
     }
 
     private fun setDivisionSign() {
