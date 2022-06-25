@@ -95,11 +95,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonEqualSign.setOnClickListener {
-            if (input.last().toString() !in operators &&
+            if (input.lastOrNull().toString() !in operators && (
                 input.contains("+") ||
                 input.contains("-") ||
                 input.contains("\u00F7") ||
-                input.contains("\u00D7")
+                input.contains("\u00D7"))
             ) {
                 storeNumber()
                 val result = doOperationsInOrder()
@@ -128,16 +128,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleDotSignInput(dotSign: String) {
-        if (number.isNotEmpty() && !number.contains(dotSign)) {
-            input += dotSign
-            number += dotSign
+        if (input.isNotEmpty()) {
+            if (input.last().toString() != dotSign &&
+                input.last().toString() !in operators) {
+                input += dotSign
+                number += dotSign
+            }
         }
     }
 
     private fun handleDigits0to9Input(newDigit: String) {
-        if (input.lastOrNull()
-                .toString() == "0" && (input.length == 1 || input[input.lastIndex - 1].toString() in operators)
-        ) {
+        if (input.lastOrNull().toString() == "0" &&
+            (input.length == 1 || input[input.lastIndex - 1].toString() in operators)) {
             input = input.replace(input.last(), newDigit.first())
             number += newDigit
         } else {
@@ -147,16 +149,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleOperatorInput(operator: String) {
-        if (((operator == "-") && (input.last().toString() == "\u00F7" || input.last()
-                .toString() == "\u00D7")) || input.last().toString() !in operators
-        ) {
-            input += operator
+        if (input.isNotEmpty()) {
+            if (input.last().toString() !in operators) {
+                input += operator
+            } else {
+                if ((operator == "-") && ((input.lastOrNull().toString() == "\u00F7" || input.lastOrNull().toString() == "\u00D7"))) {
+                    input += operator
+                }
+            }
         }
     }
 
     private fun storeNumber() {
-        listOfNumbers.add(number.toDouble())
-        number = ""
+        if (input.isNotEmpty()) {
+            listOfNumbers.add(number.toDouble())
+            number = ""
+        }
     }
 
     private fun storeOperator(operator: String) {
