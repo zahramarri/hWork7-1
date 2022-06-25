@@ -153,8 +153,10 @@ class MainActivity : AppCompatActivity() {
             if (input.last().toString() !in operators) {
                 input += operator
             } else {
-                if ((operator == "-") && ((input.lastOrNull().toString() == "\u00F7" || input.lastOrNull().toString() == "\u00D7"))) {
-                    input += operator
+                if (input.last().toString() == "\u00F7" || input.last().toString() == "\u00D7") {
+                    if (operator == "-") {
+                        input += operator
+                    }
                 }
             }
         }
@@ -162,13 +164,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun storeNumber() {
         if (input.isNotEmpty()) {
-            listOfNumbers.add(number.toDouble())
-            number = ""
+            if (number.isNotEmpty()) {
+                listOfNumbers.add(number.toDouble())
+                number = ""
+            }
         }
     }
 
     private fun storeOperator(operator: String) {
-        listOfOperators.add(operator)
+        if (operator == "-") {
+            if (input[input.indexOf("-") - 1].toString() != "\u00F7" &&
+                input[input.indexOf("-") - 1].toString() != "\u00D7") {
+                listOfOperators.add(operator)
+            }
+        } else {
+            listOfOperators.add(operator)
+        }
     }
 
     private fun handleDeleteAction () {
