@@ -156,6 +156,7 @@ class MainActivity : AppCompatActivity() {
                 if (input.last().toString() == "\u00F7" || input.last().toString() == "\u00D7") {
                     if (operator == "-") {
                         input += operator
+                        number += operator
                     }
                 }
             }
@@ -165,8 +166,10 @@ class MainActivity : AppCompatActivity() {
     private fun storeNumber() {
         if (input.isNotEmpty()) {
             if (number.isNotEmpty()) {
-                listOfNumbers.add(number.toDouble())
-                number = ""
+                if (number != "-") {
+                    listOfNumbers.add(number.toDouble())
+                    number = ""
+                }
             }
         }
     }
