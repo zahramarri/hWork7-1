@@ -22,34 +22,45 @@ object MathematicalOperation {
 
     }
 
-    private fun operate(index: Int, operation: (Double, Double)-> Double): Double {
+    private fun operate(index: Int, operation: (Double, Double) -> Double) {
         val resultOfOperation = operation(listOfNumbers[index], listOfNumbers[index + 1])
         listOfNumbers[index] = resultOfOperation
         listOfNumbers.removeAt(index + 1)
-        listOfOperators.removeAt(index)
-        return resultOfOperation
     }
 
     fun doOperationsInOrder(): Double {
-        var result = 0.0
+        val listOfRemainedOperators = listOfOperators.toMutableList()
+        var index: Int
+
         for (operator in listOfOperators) {
-            val index = listOfOperators.indexOf(operator)
-            result = if (listOfOperators.contains("×") || listOfOperators.contains("÷")) {
-                if (operator == "×") {
-                    operate(index, ::multiply)
-                } else {
-                    operate(index, ::divide)
-                }
+            index = listOfRemainedOperators.indexOf(operator)
+            if (operator == "×") {
+                operate(index, ::multiply)
+                listOfRemainedOperators.remove("×")
+            } else if (operator == "÷") {
+                operate(index, ::divide)
+                listOfRemainedOperators.remove("÷")
             } else {
-                if (operator == "+") {
-                    operate(index, ::add)
-                } else {
-                    operate(index, ::submit)
-                }
+                continue
             }
         }
+
+        for (operator in listOfOperators) {
+            index = listOfRemainedOperators.indexOf(operator)
+            if (operator == "+") {
+                operate(index, ::add)
+                listOfRemainedOperators.remove("+")
+            } else if (operator == "-") {
+                operate(index, ::submit)
+                listOfRemainedOperators.remove("-")
+            } else {
+                continue
+            }
+        }
+
+        val result = listOfNumbers[0]
         listOfNumbers.clear()
-        listOfNumbers.clear()
+        listOfOperators.clear()
         return result
     }
 }

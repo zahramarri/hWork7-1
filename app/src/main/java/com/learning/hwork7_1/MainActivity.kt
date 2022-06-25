@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleDigits0to9Input(newDigit: String) {
         if (input.lastOrNull()
-                .toString() == "0" && (input.length == 1 || input[input.indexOf("0") - 1].toString() in operators)
+                .toString() == "0" && (input.length == 1 || input[input.lastIndex - 1].toString() in operators)
         ) {
             input = input.replace(input.last(), newDigit.first())
             number += newDigit
