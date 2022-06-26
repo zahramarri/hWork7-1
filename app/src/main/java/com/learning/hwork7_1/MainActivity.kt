@@ -161,6 +161,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        } else if (operator == "-") {
+            input += operator
+            number += operator
         }
     }
 
@@ -176,14 +179,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun storeOperator(operator: String) {
-        if (input[input.lastIndexOf(operator) - 1].toString() in digits) {
-            listOfOperators.add(operator)
-        } else {
-            if (operator == "-") {
-                if (input[input.lastIndexOf(operator) - 1].toString() != "\u00F7" &&
-                    input[input.lastIndexOf(operator) - 1].toString() != "\u00D7"
-                ) {
-                    listOfOperators.add(operator)
+        if (input.isNotEmpty() && input.length > 1) {
+            if (input[input.lastIndexOf(operator) - 1].toString() in digits) {
+                listOfOperators.add(operator)
+            } else {
+                if (operator == "-") {
+                    if (input[input.lastIndexOf(operator) - 1].toString() != "\u00F7" &&
+                        input[input.lastIndexOf(operator) - 1].toString() != "\u00D7"
+                    ) {
+                        listOfOperators.add(operator)
+                    }
                 }
             }
         }
@@ -192,10 +197,24 @@ class MainActivity : AppCompatActivity() {
     private fun handleDeleteAction () {
         if (input.isNotEmpty()) {
             if (input.last().toString() in operators) {
-                input = input.dropLast(1)
-                listOfOperators.removeLast()
-                number = listOfNumbers.last().toString()
-                listOfNumbers.removeLast()
+                if (input.last().toString() == "-") {
+                    if (input.length == 1 ||
+                        input[input.lastIndexOf("-") - 1].toString() == "\u00F7" ||
+                        input[input.lastIndexOf("-") - 1].toString() == "\u00D7") {
+                        input = input.dropLast(1)
+                        number = number.dropLast(1)
+                    } else {
+                        input = input.dropLast(1)
+                        listOfOperators.removeLast()
+                        number = listOfNumbers.last().toString()
+                        listOfNumbers.removeLast()
+                    }
+                } else {
+                    input = input.dropLast(1)
+                    listOfOperators.removeLast()
+                    number = listOfNumbers.last().toString()
+                    listOfNumbers.removeLast()
+                }
             } else {
                 input = input.dropLast(1)
                 number = number.dropLast(1)
