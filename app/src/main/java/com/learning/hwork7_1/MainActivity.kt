@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private val divisionSign = "\u00F7"
     private val multiplicationSign = "\u00D7"
     private val operators: Array<String> = arrayOf("+", "-", "\u00F7", "\u00D7")
+    private val digits: Array<String> = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -175,26 +176,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun storeOperator(operator: String) {
-        if (operator == "-") {
-            if (input[input.indexOf("-") - 1].toString() != "\u00F7" &&
-                input[input.indexOf("-") - 1].toString() != "\u00D7") {
-                listOfOperators.add(operator)
-            }
-        } else {
+        if (input[input.lastIndexOf(operator) - 1].toString() in digits) {
             listOfOperators.add(operator)
+        } else {
+            if (operator == "-") {
+                if (input[input.lastIndexOf(operator) - 1].toString() != "\u00F7" &&
+                    input[input.lastIndexOf(operator) - 1].toString() != "\u00D7"
+                ) {
+                    listOfOperators.add(operator)
+                }
+            }
         }
     }
 
     private fun handleDeleteAction () {
-        if (input.last().toString() in operators) {
-            input = input.dropLast(1)
-            listOfOperators.removeLast()
-            number = listOfNumbers.last().toString()
-            listOfNumbers.removeLast()
-        } else {
-            input = input.dropLast(1)
-            number = number.dropLast(1)
+        if (input.isNotEmpty()) {
+            if (input.last().toString() in operators) {
+                input = input.dropLast(1)
+                listOfOperators.removeLast()
+                number = listOfNumbers.last().toString()
+                listOfNumbers.removeLast()
+            } else {
+                input = input.dropLast(1)
+                number = number.dropLast(1)
+            }
         }
     }
-
 }
