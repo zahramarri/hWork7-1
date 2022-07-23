@@ -21,6 +21,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (savedInstanceState != null) {
+            with(savedInstanceState) {
+                binding.resultOfOperations.text = getString(STATE_RESULT)
+            }
+        }
+
         setDivisionSign()
         setMultiplicationSign()
 
@@ -220,5 +226,14 @@ class MainActivity : AppCompatActivity() {
                 number = number.dropLast(1)
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(STATE_RESULT, binding.resultOfOperations.text.toString())
+        super.onSaveInstanceState(outState)
+    }
+
+    companion object{
+        const val STATE_RESULT = "text view result status"
     }
 }
