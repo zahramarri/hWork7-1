@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState != null) {
             with(savedInstanceState) {
-                binding.resultOfOperations.text = getString(STATE_RESULT)
+                binding.tvScreen.text = getString(STATE_RESULT)
             }
         }
 
@@ -32,73 +32,73 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonZero.setOnClickListener {
             handleDigits0to9Input(binding.buttonZero.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonOne.setOnClickListener {
             handleDigits0to9Input(binding.buttonOne.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonTwo.setOnClickListener {
             handleDigits0to9Input(binding.buttonTwo.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonThree.setOnClickListener {
             handleDigits0to9Input(binding.buttonThree.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonFour.setOnClickListener {
             handleDigits0to9Input(binding.buttonFour.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonFive.setOnClickListener {
             handleDigits0to9Input(binding.buttonFive.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonSix.setOnClickListener {
             handleDigits0to9Input(binding.buttonSix.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonSeven.setOnClickListener {
             handleDigits0to9Input(binding.buttonSeven.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonEight.setOnClickListener {
             handleDigits0to9Input(binding.buttonEight.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonNine.setOnClickListener {
             handleDigits0to9Input(binding.buttonNine.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
 
         binding.buttonDotSign.setOnClickListener {
             handleDotSignInput(binding.buttonDotSign.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
 
         binding.buttonDivisionSign.setOnClickListener {
             handleOperatorInput(binding.buttonDivisionSign.text.toString())
             storeOperator(binding.buttonDivisionSign.text.toString())
             storeNumber()
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonMultiplicationSign.setOnClickListener {
             handleOperatorInput(binding.buttonMultiplicationSign.text.toString())
             storeOperator(binding.buttonMultiplicationSign.text.toString())
             storeNumber()
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonSubmissionSign.setOnClickListener {
             handleOperatorInput(binding.buttonSubmissionSign.text.toString())
             storeOperator(binding.buttonSubmissionSign.text.toString())
             storeNumber()
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
         binding.buttonAdditionSign.setOnClickListener {
             handleOperatorInput(binding.buttonAdditionSign.text.toString())
             storeNumber()
             storeOperator(binding.buttonAdditionSign.text.toString())
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
 
         binding.buttonEqualSign.setOnClickListener {
@@ -115,14 +115,14 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     result.toString()
                 }
-                binding.resultOfOperations.text = input
+                binding.tvScreen.text = input
                 number = input
             }
         }
 
         binding.buttonDelete.setOnClickListener{
             handleDeleteAction()
-            binding.resultOfOperations.text = input
+            binding.tvScreen.text = input
         }
     }
 
@@ -229,7 +229,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString(STATE_RESULT, binding.resultOfOperations.text.toString())
+        outState.putString(STATE_RESULT, binding.tvScreen.text.toString())
         super.onSaveInstanceState(outState)
     }
 
