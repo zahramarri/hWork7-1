@@ -137,7 +137,8 @@ class MainActivity : AppCompatActivity() {
     private fun handleDotSignInput(dotSign: String) {
         if (input.isNotEmpty()) {
             if (input.last().toString() != dotSign &&
-                input.last().toString() !in operators) {
+                input.last().toString() !in operators &&
+                !number.contains(dotSign)) {
                 input += dotSign
                 number += dotSign
             }
