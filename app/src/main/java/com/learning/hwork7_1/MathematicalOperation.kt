@@ -1,8 +1,13 @@
 package com.learning.hwork7_1
 
-object MathematicalOperation {
-    val listOfNumbers: MutableList<Double> = mutableListOf()
-    val listOfOperators: MutableList<String> = mutableListOf()
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+class MathematicalOperation(
+    val listOfNumbers: MutableList<Double>,
+    val listOfOperators: MutableList<String>
+) : Parcelable {
 
     private fun add(a: Double, b: Double): Double {
         return a + b

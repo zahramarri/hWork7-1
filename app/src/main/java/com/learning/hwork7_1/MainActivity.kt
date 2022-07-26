@@ -2,12 +2,10 @@ package com.learning.hwork7_1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.learning.hwork7_1.MathematicalOperation.doOperationsInOrder
-import com.learning.hwork7_1.MathematicalOperation.listOfNumbers
-import com.learning.hwork7_1.MathematicalOperation.listOfOperators
 import com.learning.hwork7_1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private var mathematicalOperation: MathematicalOperation? = null
     private lateinit var binding: ActivityMainBinding
     private var input: String = ""
     private var number: String = ""
@@ -21,9 +19,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState == null) {
+            initializeOperationObject()
+        } else {
             with(savedInstanceState) {
                 binding.tvScreen.text = getString(STATE_RESULT)
+                input = getString(STATE_RESULT).toString()
+                mathematicalOperation = getParcelable(STATE_OPERATION_OBJECT)
             }
         }
 
@@ -109,9 +111,9 @@ class MainActivity : AppCompatActivity() {
                 input.contains("\u00D7"))
             ) {
                 storeNumber()
-                val result = doOperationsInOrder()
+                val result = mathematicalOperation?.doOperationsInOrder()
                 input = if (result.toString().last() == '0') {
-                    result.toInt().toString()
+                    result?.toInt().toString()
                 } else {
                     result.toString()
                 }
@@ -178,7 +180,7 @@ class MainActivity : AppCompatActivity() {
         if (input.isNotEmpty()) {
             if (number.isNotEmpty()) {
                 if (number != "-") {
-                    listOfNumbers.add(number.toDouble())
+                    mathematicalOperation?.listOfNumbers?.add(number.toDouble())
                     number = ""
                 }
             }
@@ -188,13 +190,13 @@ class MainActivity : AppCompatActivity() {
     private fun storeOperator(operator: String) {
         if (input.isNotEmpty() && input.length > 1) {
             if (input[input.lastIndexOf(operator) - 1].toString() in digits) {
-                listOfOperators.add(operator)
+                mathematicalOperation?.listOfOperators?.add(operator)
             } else {
                 if (operator == "-") {
                     if (input[input.lastIndexOf(operator) - 1].toString() != "\u00F7" &&
                         input[input.lastIndexOf(operator) - 1].toString() != "\u00D7"
                     ) {
-                        listOfOperators.add(operator)
+                        mathematicalOperation?.listOfOperators?.add(operator)
                     }
                 }
             }
@@ -212,15 +214,15 @@ class MainActivity : AppCompatActivity() {
                         number = number.dropLast(1)
                     } else {
                         input = input.dropLast(1)
-                        listOfOperators.removeLast()
-                        number = listOfNumbers.last().toString()
-                        listOfNumbers.removeLast()
+                        mathematicalOperation?.listOfOperators?.removeLast()
+                        number = mathematicalOperation?.listOfNumbers?.last().toString()
+                        mathematicalOperation?.listOfNumbers?.removeLast()
                     }
                 } else {
                     input = input.dropLast(1)
-                    listOfOperators.removeLast()
-                    number = listOfNumbers.last().toString()
-                    listOfNumbers.removeLast()
+                    mathematicalOperation?.listOfOperators?.removeLast()
+                    number = mathematicalOperation?.listOfNumbers?.last().toString()
+                    mathematicalOperation?.listOfNumbers?.removeLast()
                 }
             } else {
                 input = input.dropLast(1)
@@ -230,11 +232,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString(STATE_RESULT, binding.tvScreen.text.toString())
+        outState.run {
+            putString(STATE_RESULT, binding.tvScreen.text.toString())
+            putParcelable(STATE_OPERATION_OBJECT, mathematicalOperation)
+        }
         super.onSaveInstanceState(outState)
     }
 
     companion object{
         const val STATE_RESULT = "text view result status"
+        const val STATE_OPERATION_OBJECT = "mathematical operation object status"
+    }
+
+    private fun initializeOperationObject() {
+        mathematicalOperation = MathematicalOperation(mutableListOf(), mutableListOf())
     }
 }
