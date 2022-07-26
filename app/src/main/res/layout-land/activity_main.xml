@@ -36,7 +36,7 @@
             android:id="@+id/buttonDelete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.96"
             android:layout_marginHorizontal="5dp"
             android:text="@string/buttonDeleteText"
             android:textSize="15sp"

@@ -8,7 +8,7 @@ import com.learning.hwork7_1.MathematicalOperation.listOfOperators
 import com.learning.hwork7_1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private var input: String = ""
     private var number: String = ""
     private val divisionSign = "\u00F7"
