@@ -105,10 +105,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonEqualSign.setOnClickListener {
             if (input.lastOrNull().toString() !in operators && (
-                input.contains("+") ||
-                input.contains("-") ||
-                input.contains("\u00F7") ||
-                input.contains("\u00D7"))
+                        input.contains("+") ||
+                                input.contains("-") ||
+                                input.contains("\u00F7") ||
+                                input.contains("\u00D7"))
             ) {
                 storeNumber()
                 val result = mathematicalOperation?.doOperationsInOrder()
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.buttonDelete.setOnClickListener{
+        binding.buttonDelete.setOnClickListener {
             handleDeleteAction()
             binding.tvScreen.text = input
         }
@@ -140,7 +140,8 @@ class MainActivity : AppCompatActivity() {
         if (input.isNotEmpty()) {
             if (input.last().toString() != dotSign &&
                 input.last().toString() !in operators &&
-                !number.contains(dotSign)) {
+                !number.contains(dotSign)
+            ) {
                 input += dotSign
                 number += dotSign
             }
@@ -149,7 +150,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleDigits0to9Input(newDigit: String) {
         if (input.lastOrNull().toString() == "0" &&
-            (input.length == 1 || input[input.lastIndex - 1].toString() in operators)) {
+            (input.length == 1 || input[input.lastIndex - 1].toString() in operators)
+        ) {
             input = input.replace(input.last(), newDigit.first())
             number += newDigit
         } else {
@@ -203,13 +205,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleDeleteAction () {
+    private fun handleDeleteAction() {
         if (input.isNotEmpty()) {
             if (input.last().toString() in operators) {
                 if (input.last().toString() == "-") {
                     if (input.length == 1 ||
                         input[input.lastIndexOf("-") - 1].toString() == "\u00F7" ||
-                        input[input.lastIndexOf("-") - 1].toString() == "\u00D7") {
+                        input[input.lastIndexOf("-") - 1].toString() == "\u00D7"
+                    ) {
                         input = input.dropLast(1)
                         number = number.dropLast(1)
                     } else {
@@ -234,17 +237,27 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         outState.run {
             putString(STATE_RESULT, binding.tvScreen.text.toString())
+            setLastNumberRemained()
             putParcelable(STATE_OPERATION_OBJECT, mathematicalOperation)
         }
         super.onSaveInstanceState(outState)
     }
 
-    companion object{
+    companion object {
         const val STATE_RESULT = "text view result status"
         const val STATE_OPERATION_OBJECT = "mathematical operation object status"
     }
 
     private fun initializeOperationObject() {
         mathematicalOperation = MathematicalOperation(mutableListOf(), mutableListOf())
+    }
+
+    private fun setLastNumberRemained() {
+        if (input.lastOrNull().toString() in digits) {
+            val lastOperatorInList = mathematicalOperation?.listOfOperators?.last()
+            val indexOfLastOperatorInInput = lastOperatorInList?.let { input.lastIndexOf(it) }
+            val lastNumberInInput = indexOfLastOperatorInInput?.let { input.substring(it + 1) }
+            lastNumberInInput?.toDouble()?.let { mathematicalOperation?.listOfNumbers?.add(it) }
+        }
     }
 }
